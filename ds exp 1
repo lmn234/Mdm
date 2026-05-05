@@ -1,0 +1,62 @@
+1) Array me Insertion & Deletion (Specific Position using Function)
+
+
+#include <stdio.h>
+
+// Function to insert element at given position
+void insert(int arr[], int *n, int pos, int value) {
+    // Shift elements to right
+    for(int i = *n; i > pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos] = value; // Insert value
+    (*n)++; // Increase size
+}
+
+// Function to delete element from given position
+void deleteElement(int arr[], int *n, int pos) {
+    // Shift elements to left
+    for(int i = pos; i < *n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    (*n)--; // Reduce size
+}
+
+void display(int arr[], int n) {
+    for(int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[100], n, pos, value, choice;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter elements:\n");
+    for(int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("1.Insert  2.Delete\n");
+    scanf("%d", &choice);
+
+    if(choice == 1) {
+        printf("Enter position & value: ");
+        scanf("%d %d", &pos, &value);
+        insert(arr, &n, pos, value);
+    } else {
+        printf("Enter position to delete: ");
+        scanf("%d", &pos);
+        deleteElement(arr, &n, pos);
+    }
+
+    printf("Updated Array:\n");
+    display(arr, n);
+
+    return 0;
+}
+
+
